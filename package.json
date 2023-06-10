@@ -1,0 +1,25 @@
+{
+  "name": "queue",
+  "version": "1.0.0",
+  "description": "Hackaton sobre ordem de filas",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collect-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aeciobrumel/hackaton.git"
+  },
+  "author": "multiple",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aeciobrumel/hackaton/issues"
+  },
+  "homepage": "https://github.com/aeciobrumel/hackaton#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "prompt-read": "^1.0.1"
+  }
+}
