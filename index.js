@@ -2,12 +2,11 @@ const prompt = require("prompt-read");
 const Queue = require("./queue");
 const { message } = require("./utils");
 
-// MAIN
-var priorityTime = false; //boolean para testar se prioritario ja foi retirado
-var priority = new Queue();
-var normal = new Queue();
+let priorityCount = 0;
+let priority = new Queue();
+let normal = new Queue();
+let option = undefined;
 
-// Menu
 do {
   console.clear();
   console.log("ragatanga pt/2");
@@ -18,7 +17,7 @@ do {
   console.log("1 - Inserir");
   console.log("2 - Remover");
   console.log("9 - Sair");
-  var option = prompt("Opção: ", "number");
+  option = prompt("Opção: ", "number");
 
   switch (option) {
     case 1:
@@ -26,47 +25,43 @@ do {
       console.log("** OPERAÇÕES **");
       console.log("1 - Fila prioritária");
       console.log("2 - Fila Normal");
-      var opcao = prompt("Opção: ", "number");
+      let queueOption = prompt("Opção: ", "number");
 
-      if ((opcao == 1) | (opcao == 2)) {
-        if (opcao == 1) {
-          var element = prompt("Elemento: ");
+      if ((queueOption === 1) | (queueOption === 2)) {
+        if (queueOption === 1) {
+          let element = prompt("Elemento: ");
           priority.enqueue(element);
-          message("inserido na fila Prioritária!!!");
+          message("Inserido na fila Prioritária!");
         } else {
-          var element = prompt("Elemento: ");
+          let element = prompt("Elemento: ");
           normal.enqueue(element);
-          message("inserido na fila Normal!!!");
+          message("Inserido na fila Normal!");
         }
       } else {
-        message("opção inválida");
+        message("Opção inválida!");
       }
-
       break;
 
     case 2:
-      if (priorityTime == false) {
-        //se não foi retirado cai nesse laço
-
-        var elementP = priority.dequeue(); //guardo elemento em variavel para jogar na tela antes de remove-lo
-        if (elementP !== undefined) {
-          message("Elemento " + elementP + " removido DA PRIORI!"); //jogo na tela
-        } else {
-          //se cair aqui prioritaria ta vazio então retiro elemento  da normal
-          var elementN = normal.dequeue();
-          message("Elemento " + elementN + " removido DA NORMAL!");
-        }
-        priorityTime = true; //retorno true para indicar que retirei elemento da prioritaria
-      } else {
-        var elementN = normal.dequeue();
-        if (elementN !== undefined) {
-          message("Elemento removido DA NORMAL!");
-        } else {
-          message("Fila está vazia!");
-        }
-        priorityTime = false; //retorno falso para poder retirar novamente do prioritario...
+      if (priority.isEmpty() && normal.isEmpty()) {
+        message("A fila está vazia!");
       }
-      break;
+
+      if (priorityCount < 2) {
+        const elementP = priority.dequeue();
+        if (elementP) {
+          message("Elemento " + elementP + " removido da fila PRIORITÁRIA!");
+          priorityCount++;
+          break;
+        }
+      }
+
+      const elementN = normal.dequeue();
+      if (elementN) {
+        message("Elemento " + elementN + " removido da fila NORMAL!");
+        priorityCount = 0;
+        break;
+      }
 
     case 9:
       console.clear();
