@@ -1,6 +1,29 @@
 # Hackaton
 
-Código de ordem de file em Javascript
+Trabalho da faculdade sobre código de ordem de fila em Javascript.
+
+## Funcionalidades
+
+- Classe Queue (Fila)
+- Testes com Jest
+
+## Instalando o projeto
+
+```bash
+npm i
+```
+
+## Rodando o projeto
+
+```bash
+npm run dev
+```
+
+## Rodando os testes
+
+```bash
+npm run test
+```
 
 Criado por:
 
