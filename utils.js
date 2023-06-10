@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 function sleep(ms) {
   const date = Date.now();
   let currentDate = null;
